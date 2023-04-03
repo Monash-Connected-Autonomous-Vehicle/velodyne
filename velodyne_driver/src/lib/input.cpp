@@ -86,7 +86,7 @@ Input::Input(rclcpp::Node * private_nh, const std::string & devip, uint16_t port
   if (!devip_str_.empty()) {
     RCLCPP_INFO(
       private_nh->get_logger(),
-      "Only accepting packets from IP address: " + devip_str_);
+      ("Only accepting packets from IP address: " + devip_str_).c_str());
   }
 }
 
@@ -232,7 +232,7 @@ int InputSocket::getPacket(velodyne_msgs::msg::VelodynePacket * pkt, const doubl
 
     RCLCPP_DEBUG(
       private_nh_->get_logger(),
-      "incomplete Velodyne packet read: " + std::to_string(nbytes) + " bytes");
+      ("incomplete Velodyne packet read: " + std::to_string(nbytes) + " bytes").c_str());
   }
 
   rclcpp::Time time2 = private_nh_->get_clock()->now();
